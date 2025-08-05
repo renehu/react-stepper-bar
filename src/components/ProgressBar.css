@@ -1,0 +1,68 @@
+/* ProgressBar.css */
+:root {
+    --dark: #07ac2d;
+    --light: #91ff50;
+  }
+  
+  .progress-container {
+    width: 100%;
+    font-family: sans-serif;
+  }
+  
+  .progress-top {
+    display: flex;
+    align-items: center;    /* 让 bar 和 counter 垂直居中 */
+  }
+  
+  .progress-bar {
+    flex: 1;
+    position: relative;
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-right: 10px;
+  }
+  
+  /* 单一填充，2步交替渐变，且整体自然圆角 */
+  .progress-fill {
+    height: 100%;
+    width: 0;
+    background: linear-gradient(
+      90deg,
+      var(--dark) 0%,
+      var(--light) 40%,
+      var(--light) 40%,
+      var(--dark) 80%,
+      var(--dark) 80%,
+      var(--light) 100%
+    );
+    transition: width 1s ease-in-out;
+    border-radius: 4px;
+  }
+  
+  .progress-counter {
+    white-space: nowrap;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* 底部标签 */
+  .progress-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+  }
+  
+  .progress-label {
+    font-size: 12px;
+    color: #999;
+  }
+  
+  /* 仅当前步骤高亮 */
+  .progress-label.active {
+    color: #333;
+    font-weight: bold;
+  }
+  

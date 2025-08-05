@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ProgressBar from "./components/ProgressBar";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+  state = { step: 1 };
+
+  next = () => {
+    this.setState(({ step }) => ({
+      step: Math.min(step + 1, 6),
+    }));
+  };
+
+  prev = () => {
+    this.setState(({ step }) => ({
+      step: Math.max(step - 1, 1),
+    }));
+  };
+
+  render() {
+    const labels = ["Step1", "Step2", "Step3", "Step4", "Step5", "Step6"];
+    return (
+      <div style={{ width: 600, margin: "40px auto" }}>
+        <ProgressBar
+          currentStep={this.state.step}
+          totalSteps={6}
+          labels={labels}
+        />
+        <div style={{ marginTop: 20, textAlign: "center" }}>
+          <button onClick={this.prev} disabled={this.state.step === 1}>
+            Back
+          </button>
+          <button
+            onClick={this.next}
+            disabled={this.state.step === 6}
+            style={{ marginLeft: 12 }}
+          >
+            Next
+          </button>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
