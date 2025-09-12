@@ -1,6 +1,7 @@
 import React from "react";
 import ProgressBar3 from "./components/ProgressBar3";
 import "./App.css";
+import SearchUsers from "./components/Search";
 
 class App extends React.Component {
   state = { step: 1 };
@@ -47,6 +48,7 @@ class App extends React.Component {
             </button>
           </div>
         </div>
+        <SearchUsers />
       </>
     );
   }
